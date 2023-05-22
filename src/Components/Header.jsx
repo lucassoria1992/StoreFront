@@ -2,6 +2,7 @@ import React from 'react'
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import FormularioCarga from './Formulario';
 
+
 const Layout = () => {
 
 

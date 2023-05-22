@@ -3,17 +3,24 @@ import axios from "axios";
 
 
 const UseGetItems = () => {
-    const API = 'http://localhost:4000/API/ver'
-    const [items, setItems] = useState([])
+    const API = "https://localhost:7055/api/products";
+    const [items, setItems] = useState([]);
+  
     useEffect(() => {
-        axios.get(API)
-            .then(res => {
-                setItems(res.data)
-            })
-    }, [])
-    return (
-        items
-    );
-}
+      const fetchItems = async () => {
+        try {
+          const response = await axios.get(API);
+          setItems(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchItems();
+    }, []);
+  
+    return items;
+  };
+
 
 export default UseGetItems;

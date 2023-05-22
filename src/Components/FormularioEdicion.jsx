@@ -1,81 +1,87 @@
 import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Button, Modal, Nav } from "react-bootstrap";
+import { Button, Modal, Nav} from "react-bootstrap";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import ProductItemsList from "../Conteiners/Productos";
 
-const FormularioCarga = () => {
+const FormularioEdicion = ({ item }) => {
   const form = useRef(null);
-  const handleSubmit = async () => {
+  const [productId, setProductId] = useState("");
+
+  const handleSubmit = async (productId) => {
     try {
       const formData = new FormData(form.current);
       const data = {
+        id: item.id,
         description: formData.get("description"),
         category: formData.get("category"),
         image: formData.get("image"),
-        price: formData.get("price"),
+        price: parseFloat(formData.get("price")),
         star: formData.get("star") === "true",
       };
-      await axios.post("https://localhost:7055/api/products", data);
+
+      await axios.put(`https://localhost:7055/api/products/${productId}`, data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  //ModalStates
+  // Modal States
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleEditProduct = (productId) => {
+    setProductId(productId);
+    handleShow();
+  };
+
+  const deleteObject = async (productId) => {
+    try {
+      await axios.delete(`https://localhost:7055/api/products/${productId}`);
+      console.log("Object deleted successfully");
+    } catch (error) {
+      console.error("Error deleting object:", error);
+    }
+  };
+
   return (
     <>
-      <Nav.Link onClick={handleShow}>Agregar Producto</Nav.Link>
+      <Nav.Link onClick={() => handleEditProduct(item.id) }>Editar Producto</Nav.Link>
       <Modal show={show} onHide={handleClose} key={uuidv4()}>
         <Modal.Header closeButton>
-          <Modal.Title>Infomacion de Producto </Modal.Title>
+          <Modal.Title>Información del Producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form ref={form}>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Label>image</Form.Label>
-              <Form.Control
-                name="image"
-                type="text"
-                placeholder="Inserte URL de image"
-                required
-              />
+              <Form.Label>Imagen</Form.Label>
+              <Form.Control name="image" type="text" placeholder={item.image} required />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Label>Precio</Form.Label>
-              <Form.Control
-                name="price"
-                type="number"
-                placeholder="Precio"
-                required
-              />
+              <Form.Control name="price" type="number" placeholder={item.price} required />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Descripcion del prodcuto</Form.Label>
+              <Form.Label>Descripción del producto</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={4}
                 name="description"
                 type="text"
-                placeholder="description"
+                placeholder={item.description}
                 required
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Categoria</Form.Label>
+              <Form.Label>Categoría</Form.Label>
               <Form.Control
                 name="category"
                 type="text"
-                placeholder="Nombre de Prodcuto"
+                placeholder={item.category}
                 required
               />
-              <Form.Text className="text-muted">
-                Enter Product Category
-              </Form.Text>
+              <Form.Text className="text-muted">Ingrese la categoría del producto</Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check name="star" type="checkbox" label="En Stock" />
@@ -84,18 +90,27 @@ const FormularioCarga = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cerrar
           </Button>
           <Button
             variant="primary"
             type="submit"
             onClick={() => {
               handleClose();
-              handleSubmit();
-              ProductItemsList();
+              handleSubmit(item.id);
             }}
           >
-            Save Product
+            Guardar Producto
+          </Button>
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={() => {
+              handleClose();
+              deleteObject(productId);
+            }}
+          >
+            Eliminar Producto
           </Button>
         </Modal.Footer>
       </Modal>
@@ -103,4 +118,4 @@ const FormularioCarga = () => {
   );
 };
 
-export default FormularioCarga;
+export default FormularioEdicion;

@@ -1,15 +1,23 @@
 import React from 'react';
-import { Card, Button, CardGroup } from 'react-bootstrap';
-
+import { Card,CardGroup } from 'react-bootstrap';
+import FormularioEdicion from './FormularioEdicion';
+// import axios from 'axios';
 
 const ProductItem = ({ item }) => {
 
-    const stock = (item.disponible)
-    if (stock === null) {
+    // const EliminarProducto = async (id) => {
+    //     try {
+    //       await axios.delete(`https://localhost:7055/api/objects/${id}`);
+    //       console.log("Object deleted successfully");
+    //     } catch (error) {
+    //       console.error("Error deleting object:", error);
+    //     }
+    //   };
+
         return (
             <CardGroup>
                 <Card className='m-2'>
-                    <Card.Img variant="top" src={item.imagen} />
+                    <Card.Img variant="top" src={item.image} />
                     <Card.Body>
                         <Card.Title>{item.nombre}</Card.Title>
                         <Card.Text>
@@ -17,31 +25,13 @@ const ProductItem = ({ item }) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                    <Button variant="primary" className='d-block'>Reservalo!</Button>
+                    <FormularioEdicion item = {item} />
                     </Card.Footer>
                 </Card>
             </CardGroup>
         );
-    } else {
-        return (
-            <CardGroup>
-                <Card className='m-2'>
-                    <Card.Img variant="top" src={item.imagen}  />
-                    <Card.Body>
-                        <Card.Title>{item.nombre}</Card.Title>
-                        <Card.Text>
-                            {item.description}
-                        </Card.Text>
-                        
-                    </Card.Body>
-                    <Card.Footer>
-                    <Button variant="primary" className='d-block'>Reservalo!</Button>
-                    </Card.Footer>
-                </Card>
-            </CardGroup>
-        );
-    }
-}
+        }
+
 
 
 export default ProductItem; 
