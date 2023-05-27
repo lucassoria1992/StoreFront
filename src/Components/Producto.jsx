@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card,CardGroup } from 'react-bootstrap';
 import FormularioEdicion from './FormularioEdicion';
-// import axios from 'axios';
 
 const ProductItem = ({ item }) => {
 
