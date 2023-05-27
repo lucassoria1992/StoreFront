@@ -4,9 +4,10 @@ import { Button, Modal, Nav } from "react-bootstrap";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import ProductItemsList from "../Conteiners/Productos";
-
+const API = process.env.REACT_APP_API_REST;
 const FormularioCarga = () => {
   const form = useRef(null);
+  
   const handleSubmit = async () => {
     try {
       const formData = new FormData(form.current);
@@ -17,7 +18,7 @@ const FormularioCarga = () => {
         price: formData.get("price"),
         star: formData.get("star") === "true",
       };
-      await axios.post("https://localhost:7055/api/products", data);
+      await axios.post(API , data);
     } catch (error) {
       console.error(error);
     }
@@ -37,7 +38,7 @@ const FormularioCarga = () => {
         <Modal.Body>
           <Form ref={form}>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Label>image</Form.Label>
+              <Form.Label>Imagen</Form.Label>
               <Form.Control
                 name="image"
                 type="text"
@@ -55,7 +56,7 @@ const FormularioCarga = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Descripcion del prodcuto</Form.Label>
+              <Form.Label>Descripcion del producto</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={4}
@@ -70,11 +71,11 @@ const FormularioCarga = () => {
               <Form.Control
                 name="category"
                 type="text"
-                placeholder="Nombre de Prodcuto"
+                placeholder="Nombre de Producto"
                 required
               />
               <Form.Text className="text-muted">
-                Enter Product Category
+                Categoria de Producto
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -92,10 +93,10 @@ const FormularioCarga = () => {
             onClick={() => {
               handleClose();
               handleSubmit();
-              ProductItemsList();
+              
             }}
           >
-            Save Product
+            Cargar
           </Button>
         </Modal.Footer>
       </Modal>
