@@ -14,7 +14,8 @@ const Layout = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/list">Productos</Nav.Link> 
+                        <Nav.Link href="/list">Productos</Nav.Link>
+                        <Nav.Link href="/form">Cargar producto</Nav.Link> 
                     </Nav>
                     <Nav>
                         <Nav.Link eventKey={2} href="#memes">
