@@ -3,10 +3,11 @@ import axios from "axios";
 
 
 const UseGetItems = () => {
-    const API = "https://localhost:7055/api/products";
+    
     const [items, setItems] = useState([]);
   
     useEffect(() => {
+      const API = process.env.REACT_APP_API_REST;
       const fetchItems = async () => {
         try {
           const response = await axios.get(API);

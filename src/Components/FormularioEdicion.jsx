@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 const FormularioEdicion = ({ item }) => {
   const form = useRef(null);
   const [productId, setProductId] = useState("");
+  const API = process.env.REACT_APP_API_REST;
 
   const handleSubmit = async (productId) => {
     try {
@@ -19,8 +20,7 @@ const FormularioEdicion = ({ item }) => {
         price: parseFloat(formData.get("price")),
         star: formData.get("star") === "true",
       };
-
-      await axios.put(`https://localhost:7055/api/products/${productId}`, data);
+      await axios.put( API + `/${productId}`, data);
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +38,7 @@ const FormularioEdicion = ({ item }) => {
 
   const deleteObject = async (productId) => {
     try {
-      await axios.delete(`https://localhost:7055/api/products/${productId}`);
+      await axios.delete(API + `/${productId}`);
       console.log("Object deleted successfully");
     } catch (error) {
       console.error("Error deleting object:", error);
