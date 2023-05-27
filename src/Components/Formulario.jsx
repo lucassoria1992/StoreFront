@@ -3,7 +3,6 @@ import Form from "react-bootstrap/Form";
 import { Button, Modal, Nav } from "react-bootstrap";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import ProductItemsList from "../Conteiners/Productos";
 const API = process.env.REACT_APP_API_REST;
 const FormularioCarga = () => {
   const form = useRef(null);
