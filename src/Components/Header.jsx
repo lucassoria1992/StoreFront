@@ -17,9 +17,7 @@ const Layout = () => {
                         <Nav.Link href="/list">Productos</Nav.Link> 
                     </Nav>
                     <Nav>
-                        <Nav.Link eventKey={2} href="#memes">
-                        <FormularioCarga /> 
-                        </Nav.Link>
+                        <Nav.Link><FormularioCarga/></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
