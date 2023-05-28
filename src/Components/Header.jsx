@@ -1,11 +1,9 @@
 import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import FormularioCarga from './Formulario';
+import CanvasForm from './canvasform';
 
 
 const Layout = () => {
-
-
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -14,10 +12,10 @@ const Layout = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/list">Productos</Nav.Link> 
+                        <Nav.Link href="/list">Productos</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link><FormularioCarga/></Nav.Link>
+                        <Nav.Link><CanvasForm /></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

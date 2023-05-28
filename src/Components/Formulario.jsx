@@ -1,8 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Form from "react-bootstrap/Form";
-import { Button, Offcanvas, Nav } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import axios from "axios";
 import "../Styles/formCharger.css"
+
+
+const API = process.env.REACT_APP_API_REST;
 
 const FormularioCarga = () => {
   const form = useRef(null);
@@ -16,22 +19,14 @@ const FormularioCarga = () => {
         price: formData.get("price"),
         star: formData.get("star") === "true",
       };
-      await axios.post("https://test--earnest-beijinho-b043d8.netlify.app/api/products", data);
+      await axios.post(API, data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  //ModalStates
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   return (
     <>
-      <Nav.Link onClick={handleShow} className="me-2">
-        Cargar Productos
-      </Nav.Link >
-      <Offcanvas show={show} onHide={handleClose} className="fondo justify-content-around" >
           <Form ref={form} className="formbody">
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Control
@@ -89,12 +84,8 @@ const FormularioCarga = () => {
               >
                 Guardar
               </Button>
-              <Button variant="secondary" onClick={handleClose} className="buton">
-                Close
-              </Button>
             </Form.Group>
           </Form>
-      </Offcanvas>
     </>
   );
 };

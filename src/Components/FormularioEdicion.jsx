@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Button, Modal, Nav} from "react-bootstrap";
+import { Button, Modal, Nav } from "react-bootstrap";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
@@ -20,7 +20,7 @@ const FormularioEdicion = ({ item }) => {
         price: parseFloat(formData.get("price")),
         star: formData.get("star") === "true",
       };
-      await axios.put( API + `/${productId}`, data);
+      await axios.put(API + `/${productId}`, data);
     } catch (error) {
       console.error(error);
     }
@@ -47,7 +47,7 @@ const FormularioEdicion = ({ item }) => {
 
   return (
     <>
-      <Nav.Link onClick={() => handleEditProduct(item.id) }>Editar Producto</Nav.Link>
+      <Nav.Link onClick={() => handleEditProduct(item.id)}>Editar Producto</Nav.Link>
       <Modal show={show} onHide={handleClose} key={uuidv4()}>
         <Modal.Header closeButton>
           <Modal.Title>Información del Producto</Modal.Title>

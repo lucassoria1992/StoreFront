@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import ProductItems from '../src/Conteiners/Productos.jsx';
 import Layout from './Components/Header';
-import FormularioCarga from './Components/Formulario';
+import CanvasForm from './Components/canvasform';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Layout/>
         <Routes>
           <Route path='/' element={<ProductItems />} />
-          <Route path='/form' element={<FormularioCarga/>} />
+          <Route path='/form' element={<CanvasForm/>} />
         </Routes>
     </BrowserRouter>
     
