@@ -1,6 +1,5 @@
 import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import CanvasForm from './canvasform';
 
 
 const Layout = () => {
@@ -15,7 +14,7 @@ const Layout = () => {
                         <Nav.Link href="/list">Productos</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link><CanvasForm /></Nav.Link>
+                        <Nav.Link href='/FormCarga'>Carga de Productos</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

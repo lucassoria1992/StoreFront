@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { Button, Modal, Nav } from "react-bootstrap";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import UseGetItems from "../hooks/UseGetItems"
 
 const FormularioEdicion = ({ item }) => {
   const form = useRef(null);
@@ -50,7 +51,7 @@ const FormularioEdicion = ({ item }) => {
       <Nav.Link onClick={() => handleEditProduct(item.id)}>Editar Producto</Nav.Link>
       <Modal show={show} onHide={handleClose} key={uuidv4()}>
         <Modal.Header closeButton>
-          <Modal.Title>Información del Producto</Modal.Title>
+          <Modal.Title>Editar o Eliminar Producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form ref={form}>

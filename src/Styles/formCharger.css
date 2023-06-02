@@ -4,7 +4,7 @@
 }
 
 .formbody {
-    position: absolute;
+    position: relative;
     width: 350px;
     height: auto;
     display: flex;
@@ -46,7 +46,13 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  background: rgba(20, 20, 20, .2);
-  color: white;
+  background: #faf6f617 !important;
+  color: white !important;
   outline: none;
+}
+
+.inputselect{
+  background: "#faf6f617";
+  color: "white";
+
 }
