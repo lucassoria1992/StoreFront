@@ -10,9 +10,10 @@ const Layout = () => {
                 <Navbar.Brand href="/">Demo From Rolcar</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
+
                     <Nav className="me-auto ">
                         <Nav.Link href="/list">Productos</Nav.Link>
-                    </Nav>
+                     </Nav>
                     <Nav>
                         <Nav.Link href='/FormCarga'>Carga de Productos</Nav.Link>
                     </Nav>
