@@ -12,11 +12,8 @@ const Layout = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
 
                     <Nav className="me-auto ">
-                        <Nav.Link href="/list">Productos</Nav.Link>
+                        <Nav.Link href="/">Actualizar</Nav.Link>
                      </Nav>
-                    <Nav>
-                        <Nav.Link href='/FormCarga'>Carga de Productos</Nav.Link>
-                    </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

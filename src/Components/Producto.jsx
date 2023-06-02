@@ -4,10 +4,10 @@ import FormularioEdicion from './FormularioEdicion';
 
 
 const ProductItem = ({ item }) => {
-    <FormularioEdicion item = {item} />
+
         return (
-            <CardGroup>
-                <Card className='m-2'>
+            <CardGroup style={{height: "max-content"}}>
+                <Card className='m-2' style={{height: "max-content"}}>
                     <Card.Img variant="top" src={item.image} />
                     <Card.Body>
                         <Card.Title>{item.nombre}</Card.Title>

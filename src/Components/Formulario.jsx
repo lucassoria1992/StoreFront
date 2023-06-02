@@ -30,7 +30,7 @@ const FormularioCarga = () => {
 
   return (
 
-    <div className="d-flex justify-content-around align-content-center align-items-center m-5">
+    <div className="">
 
       <Form className="formbody" ref={form} >
         <Form.Text>Carga de Productos</Form.Text>
