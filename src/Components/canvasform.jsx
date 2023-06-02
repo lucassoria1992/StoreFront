@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 import {Button,Offcanvas} from 'react-bootstrap';
-import FormularioCarga from './Formulario';
+import FormularioCarga from "./Formulario";
 
 const CanvasForm = () => {
  
@@ -19,7 +19,9 @@ const CanvasForm = () => {
           <Offcanvas.Title>Carga de Productos</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className='fondo d-flex justify-content-around align-content-center'>
+          <div>
           <FormularioCarga/>
+          </div>
         </Offcanvas.Body>
       </Offcanvas>
     </>
