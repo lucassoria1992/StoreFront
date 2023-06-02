@@ -48,8 +48,8 @@ const FormularioEdicion = ({ item }) => {
   return (
     <>
       <Nav.Link onClick={() => handleEditProduct(item.id)}>Editar Producto</Nav.Link>
-      <Modal show={show} onHide={handleClose} key={uuidv4()}>
-        <Modal.Header closeButton>
+      <Modal show={show} onHide={handleClose } key={uuidv4()}>
+        <Modal.Header closeButton href="/list">
           <Modal.Title>Editar o Eliminar Producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -91,9 +91,6 @@ const FormularioEdicion = ({ item }) => {
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
           <Button
             variant="primary"
             type="submit"
@@ -110,6 +107,7 @@ const FormularioEdicion = ({ item }) => {
             onClick={() => {
               handleClose();
               deleteObject(productId);
+              
             }}
           >
             Eliminar Producto

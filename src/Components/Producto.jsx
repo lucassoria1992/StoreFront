@@ -2,7 +2,9 @@ import React from 'react';
 import { Card,CardGroup } from 'react-bootstrap';
 import FormularioEdicion from './FormularioEdicion';
 
+
 const ProductItem = ({ item }) => {
+    <FormularioEdicion item = {item} />
         return (
             <CardGroup>
                 <Card className='m-2'>
@@ -14,7 +16,7 @@ const ProductItem = ({ item }) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                    <FormularioEdicion item = {item} />
+                    <FormularioEdicion item={item} />
                     </Card.Footer>
                 </Card>
             </CardGroup>
