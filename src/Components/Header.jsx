@@ -1,11 +1,8 @@
 import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import FormularioCarga from './Formulario';
 
 
 const Layout = () => {
-
-
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -13,14 +10,12 @@ const Layout = () => {
                 <Navbar.Brand href="/">Demo From Rolcar</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
+
+                    <Nav className="me-auto ">
                         <Nav.Link href="/list">Productos</Nav.Link>
-                        <Nav.Link href="/form">Cargar producto</Nav.Link> 
-                    </Nav>
+                     </Nav>
                     <Nav>
-                        <Nav.Link eventKey={2} href="#memes">
-                        <FormularioCarga /> 
-                        </Nav.Link>
+                        <Nav.Link href='/FormCarga'>Carga de Productos</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Button, Modal, Nav} from "react-bootstrap";
+import { Button, Container, Modal, Nav } from "react-bootstrap";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
@@ -20,7 +20,7 @@ const FormularioEdicion = ({ item }) => {
         price: parseFloat(formData.get("price")),
         star: formData.get("star") === "true",
       };
-      await axios.put( API + `/${productId}`, data);
+      await axios.put(API + `/${productId}`, data);
     } catch (error) {
       console.error(error);
     }
@@ -47,12 +47,13 @@ const FormularioEdicion = ({ item }) => {
 
   return (
     <>
-      <Nav.Link onClick={() => handleEditProduct(item.id) }>Editar Producto</Nav.Link>
-      <Modal show={show} onHide={handleClose} key={uuidv4()}>
-        <Modal.Header closeButton>
-          <Modal.Title>Información del Producto</Modal.Title>
+      <Nav.Link onClick={() => handleEditProduct(item.id)}>Editar Producto</Nav.Link>
+      <Modal show={show} onHide={handleClose } key={uuidv4()}>
+        <Modal.Header closeButton href="/list">
+          <Modal.Title>Editar o Eliminar Producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <Container>
           <Form ref={form}>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Label>Imagen</Form.Label>
@@ -87,11 +88,9 @@ const FormularioEdicion = ({ item }) => {
               <Form.Check name="star" type="checkbox" label="En Stock" />
             </Form.Group>
           </Form>
+          </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
           <Button
             variant="primary"
             type="submit"
@@ -108,6 +107,7 @@ const FormularioEdicion = ({ item }) => {
             onClick={() => {
               handleClose();
               deleteObject(productId);
+              
             }}
           >
             Eliminar Producto
