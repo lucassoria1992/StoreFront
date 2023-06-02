@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Button, Container, Modal, Nav } from "react-bootstrap";
 import axios from "axios";
-
+import { v4 as uuidv4 } from "uuid";
 
 const FormularioEdicion = ({ item }) => {
   const form = useRef(null);
@@ -36,28 +36,32 @@ const FormularioEdicion = ({ item }) => {
     handleShow();
   };
 
-   const deleteObject = async (productId) => {
-     try {
+  const deleteObject = async (productId) => {
+    try {
       await axios.delete(API + `/${productId}`);
       console.log("Object deleted successfully");
     } catch (error) {
-     console.error("Error deleting object:", error);
-   }
- };
+      console.error("Error deleting object:", error);
+    }
+  };
 
   return (
     <>
-      <Button href="/formEdit" onClick={() => handleEditProduct(item.id)}>Editar Producto</Button>
+      <Nav.Link onClick={() => handleEditProduct(item.id)}>Editar Producto</Nav.Link>
+      <Modal show={show} onHide={handleClose} key={uuidv4()}>
+        <Modal.Header closeButton>
           <Modal.Title>Editar o Eliminar Producto</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <Container>
-          <Form ref={form} > 
+          <Form ref={form}>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Label>Imagen</Form.Label>
               <Form.Control name="image" type="text" placeholder={item.image} required />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Label>Precio</Form.Label>
-              <Form.Control name="price" type="number" placeholder={item.price} required/>
+              <Form.Control name="price" type="number" placeholder={item.price} required />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Descripción del producto</Form.Label>
@@ -85,6 +89,8 @@ const FormularioEdicion = ({ item }) => {
             </Form.Group>
           </Form>
           </Container>
+        </Modal.Body>
+        <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cerrar
           </Button>
@@ -98,7 +104,7 @@ const FormularioEdicion = ({ item }) => {
           >
             Guardar Producto
           </Button>
-          {/* <Button
+          <Button
             variant="primary"
             type="submit"
             onClick={() => {
@@ -107,7 +113,9 @@ const FormularioEdicion = ({ item }) => {
             }}
           >
             Eliminar Producto
-          </Button> */}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
