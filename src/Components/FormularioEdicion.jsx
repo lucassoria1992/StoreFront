@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Button, Modal, Nav } from "react-bootstrap";
+import { Button, Container, Modal, Nav } from "react-bootstrap";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
-import UseGetItems from "../hooks/UseGetItems"
+
 
 const FormularioEdicion = ({ item }) => {
   const form = useRef(null);
@@ -37,31 +36,28 @@ const FormularioEdicion = ({ item }) => {
     handleShow();
   };
 
-  const deleteObject = async (productId) => {
-    try {
+   const deleteObject = async (productId) => {
+     try {
       await axios.delete(API + `/${productId}`);
       console.log("Object deleted successfully");
     } catch (error) {
-      console.error("Error deleting object:", error);
-    }
-  };
+     console.error("Error deleting object:", error);
+   }
+ };
 
   return (
     <>
-      <Nav.Link onClick={() => handleEditProduct(item.id)}>Editar Producto</Nav.Link>
-      <Modal show={show} onHide={handleClose} key={uuidv4()}>
-        <Modal.Header closeButton>
+      <Button href="/formEdit" onClick={() => handleEditProduct(item.id)}>Editar Producto</Button>
           <Modal.Title>Editar o Eliminar Producto</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form ref={form}>
+          <Container>
+          <Form ref={form} > 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Label>Imagen</Form.Label>
               <Form.Control name="image" type="text" placeholder={item.image} required />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Label>Precio</Form.Label>
-              <Form.Control name="price" type="number" placeholder={item.price} required />
+              <Form.Control name="price" type="number" placeholder={item.price} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Descripción del producto</Form.Label>
@@ -88,8 +84,7 @@ const FormularioEdicion = ({ item }) => {
               <Form.Check name="star" type="checkbox" label="En Stock" />
             </Form.Group>
           </Form>
-        </Modal.Body>
-        <Modal.Footer>
+          </Container>
           <Button variant="secondary" onClick={handleClose}>
             Cerrar
           </Button>
@@ -103,7 +98,7 @@ const FormularioEdicion = ({ item }) => {
           >
             Guardar Producto
           </Button>
-          <Button
+          {/* <Button
             variant="primary"
             type="submit"
             onClick={() => {
@@ -112,9 +107,7 @@ const FormularioEdicion = ({ item }) => {
             }}
           >
             Eliminar Producto
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          </Button> */}
     </>
   );
 };
